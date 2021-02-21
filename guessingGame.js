@@ -3,7 +3,7 @@ let maximum = parseInt(prompt("Enter a maximum number"));
 
 //While user has not entered a valid number it asks to enter a valid number
 while (!maximum) {
-    maximum = parseInt(prompt("Enter a valid number!"))
+    maximum = parseInt(prompt("Enter a valid number!"));
 }
 
 //Creates a randomly generated number below the max to be guessed
@@ -18,11 +18,16 @@ let guessCount = 5;
 
 //While guess is wrong asks user again and reduces number of remaining guesses
 while (guess !== targetNum && guessCount > 0) {
-    guess = parseInt(prompt(`Wrong number, guess again! \nYou have ${guessCount} tries left`))
-    guessCount--;
+
+    if (guess < targetNum) {
+        guess = parseInt(prompt(`Wrong number, too low, guess again! \nYou have ${guessCount} tries left`));
+    } else if (guess > targetNum) {
+        guess = parseInt(prompt(`Wrong number, too high, guess again! \nYou have ${guessCount} tries left`));
+    }
+
     if (guess === targetNum) {
         console.log("YOU GOT IT RIGHT");
         break;
     }
+    guessCount--;
 }
-
